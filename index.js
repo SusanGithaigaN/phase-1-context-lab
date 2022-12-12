@@ -13,6 +13,19 @@ function createEmployeeRecord([firstName, familyName, title, payPerHour, timeInE
     }
     return myObj
 }
+ function createEmployeeRecords(){
+//     const myEmployeeRecords = {...createEmployeeRecord};
+ }
+ function  createTimeInEvent(myDates){
+    // let myDateRecords= {
+    //     type: 'TimeIn',
+    //     hour: ,
+    //     date:
+    // }
+
+ }
+
+ 
 /*
  We're giving you this function. Take a look at it, you might see some usage
  that's new and different. That's because we're avoiding a well-known, but
