@@ -1,16 +1,16 @@
 // Declare a function createEmployeeRecord and pass in  employee details as arguments.
-// Populate myObj keys with respective values.
+// Populate employeeObj keys with respective values.
+// Initialize timeInEvents and timeOutEvents to hold an empty array.
 function createEmployeeRecord([firstName, familyName, title, payPerHour]) {
-  const myObj = {
+  const employeeObj = {
     firstName: firstName,
     familyName: familyName,
     title: title,
     payPerHour: payPerHour,
-    // Initialize timeInEvents and timeOutEvents to hold an empty array.
     timeInEvents: [],
     timeOutEvents: [],
   };
-  return myObj;
+  return employeeObj;
 }
 
 
@@ -22,13 +22,13 @@ function createEmployeeRecords(newCreatedEmployeeRecords) {
 
 
 // Declare a function createTimeInEvent.
-function createTimeInEvent(dateTimeOfEntry) {
+function createTimeInEvent(dateTimeOfWorking) {
     // Add an object with type, hour and date keys.
     // Calculate the employee entry date and time.
   let dateAndTimeRecords = {
     type: "TimeIn",
-    hour: parseInt(dateTimeOfEntry.slice(-4), 10),
-    date: dateTimeOfEntry.slice(0, 10),
+    hour: parseInt(dateTimeOfWorking.slice(-4), 10),
+    date: dateTimeOfWorking.slice(0, 10),
   };
   this.timeInEvents.push(dateAndTimeRecords);
 //   Return the updated record.
@@ -38,11 +38,11 @@ function createTimeInEvent(dateTimeOfEntry) {
 
 // Declare a function createTimeOutEvent.
 // Return the updated record
-function createTimeOutEvent(dateTimeOfExit) {
+function createTimeOutEvent(dateTimeOfWorking) {
   let dateAndTimeRecords = {
     type: "TimeOut",
-    hour: parseInt(dateTimeOfExit.slice(-4), 10),
-    date: dateTimeOfExit.slice(0, 10),
+    hour: parseInt(dateTimeOfWorking.slice(-4), 10),
+    date: dateTimeOfWorking.slice(0, 10),
   };
   this.timeOutEvents.push(dateAndTimeRecords);
     return this;
@@ -68,11 +68,16 @@ function hoursWorkedOnDate() {
 }
 
 
-function wagesEarnedOnDate() {}
-// function allWagesFor(){
+function wagesEarnedOnDate(dateTimeOfWorking) {
+   return hoursWorkedOnDate.call(this, dateTimeOfWorking) * this.payPerHour
+}
 
-// }
-function findEmployeeByFirstName() {}
+
+// Loop through the employeeRecords and return a matching employee record or undefined.
+// Test the firstName field for a match with the FirstName argument.
+function findEmployeeByFirstName(employeeDetails, firstName) {
+    return employeeDetails.find((employee) => employee.firstName === firstName)
+}
 function calculatePayroll() {}
 
 /*
