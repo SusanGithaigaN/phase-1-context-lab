@@ -78,7 +78,13 @@ function wagesEarnedOnDate(dateTimeOfWorking) {
 function findEmployeeByFirstName(employeeDetails, firstName) {
     return employeeDetails.find((employee) => employee.firstName === firstName)
 }
-function calculatePayroll() {}
+function calculatePayroll(employeePayroll) {
+    const salary = employeePayroll.reduce((account, employee) => {
+        return account + allWagesFor.call(employee)
+    }, 0)
+    return salary
+}
+
 
 /*
  We're giving you this function. Take a look at it, you might see some usage
@@ -89,17 +95,20 @@ function calculatePayroll() {}
  for you to use if you need it!
  */
 
-const allWagesFor = function () {
-  const eligibleDates = this.timeInEvents.map(function (e) {
-    return e.date;
-  });
+ const allWagesFor = function () {
+    const eligibleDates = this.timeInEvents.map(function (e) {
+      return e.date;
+    });
+  
+    const payable = eligibleDates.reduce(
+      function (memo, d) {
+        return memo + wagesEarnedOnDate.call(this, d);
+      }.bind(this),
+      0
+    ); // <== Hm, why did we need to add bind() there? We'll discuss soon!
+  
+    return payable;
+  };
 
-  const payable = eligibleDates.reduce(
-    function (memo, d) {
-      return memo + wagesEarnedOnDate.call(this, d);
-    }.bind(this),
-    0
-  ); // <== Hm, why did we need to add bind() there? We'll discuss soon!
 
-  return payable;
-};
+  
